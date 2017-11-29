@@ -10,6 +10,7 @@ package com.tc25.daoImpl;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 
 import com.tc25.bean.DVD;
@@ -38,9 +39,7 @@ public class DVDManager implements DVDManage {
 	 * @see com.tc25.dao.DVDManage#addDvd()  
 	 */  
 	@Override
-	public DVD addDvd() {
-		System.out.println("请输入要添加的DVD名称:");
-		String name = iT.getString();
+	public DVD addDvd(String name) {
 		System.out.println("确认添加名称为:\t"+name+"的DVD吗?(1为是,其它为否)");
 		int isConfirm = iT.getInt();
 		if(isConfirm == 1) {
@@ -62,9 +61,7 @@ public class DVDManager implements DVDManage {
 	 * @see com.tc25.dao.DVDManage#subDvdById()  
 	 */  
 	@Override
-	public DVD subDvdById() {
-		System.out.println("请输入要删除的DVDid:");
-		int id = iT.getInt();
+	public DVD subDvdById(int id) {
 		DVD dvd = null;
 		for (DVD d : dvdList) {
 			if(id == d.getDvdId() && d.isDvdStatus() != 3) {
@@ -92,9 +89,7 @@ public class DVDManager implements DVDManage {
 	 * @see com.tc25.dao.DVDManage#subDvdByName()  
 	 */  
 	@Override
-	public DVD subDvdByName() {
-		System.out.println("请输入要删除的DVD名称:");
-		String name = iT.getString();
+	public DVD subDvdByName(String name) {
 		DVD dvd = null;
 		for (DVD d : dvdList) {
 			if(name == d.getDvdName() && d.isDvdStatus() != 3) {
@@ -121,9 +116,7 @@ public class DVDManager implements DVDManage {
 	 * @see com.tc25.dao.DVDManage#changeDvdName()  
 	 */  
 	@Override
-	public DVD changeDvdName() {
-		System.out.println("请输入要更改名称的DVDid:");
-		int id = iT.getInt();
+	public DVD changeDvdName(int id) {
 		for (DVD d : dvdList) {
 			if(id == d.getDvdId() && d.isDvdStatus() == 1){
 				System.out.println(d.toString());
@@ -165,19 +158,16 @@ public class DVDManager implements DVDManage {
 	 * @see com.tc25.dao.DVDManage#showDvdById()  
 	 */  
 	@Override
-	public DVD showDvdById() {
-		System.out.println("请输入要查看的DVDid:");
-		int id = iT.getInt();
+	public DVD showDvdById(int id) {
 		DVD dvd = null;
 		for (DVD d : dvdList) {
 			if(id == d.getDvdId()) {
-				System.out.println("已找到!");
 				dvd = d;				
 				System.out.println(dvd.toString());
 				return dvd;
 			}
 		}
-		System.out.println("未找到id为"+id+"的DVD!");
+		
 		return null;
 	}
 
@@ -202,9 +192,7 @@ public class DVDManager implements DVDManage {
 	 * @see com.tc25.dao.DVDManage#showDvdByName()  
 	 */  
 	@Override
-	public void showDvdByName() {
-		System.out.println("请输入要查看的DVD名称:");
-		String name = iT.getString();
+	public void showDvdByName(String name) {		
 		int count = 0;
 		for (DVD d : dvdList) {
 			if(name == d.getDvdName()) {												
@@ -215,6 +203,23 @@ public class DVDManager implements DVDManage {
 		if(count == 0) {
 			System.out.println("未找到名称为"+ name +"的DVD!");
 		}		
+	}
+	
+	public void showDvdRank() {
+		dvdList.sort(new Comparator<DVD>(){
+
+			@Override
+			public int compare(DVD o1, DVD o2) {
+				
+				return -(o1.getDvdLendCount()-o2.getDvdLendCount());
+			}
+			
+		});
+		int rank = 0;
+		for (DVD dvd : dvdList) {
+			System.out.print("排名"+ ++rank +":");
+			System.out.println(dvd.toString());
+		}
 	}
 
 	

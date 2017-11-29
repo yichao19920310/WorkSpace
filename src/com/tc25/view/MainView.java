@@ -23,7 +23,7 @@ public class MainView extends View {
 		System.out.println("1.×¢²á");
 		System.out.println("2.µÇÂ¼");
 		System.out.println("3.ÍË³ö");
-		int choose = it.getInt();
+		int choose = iT.getInt();
 		switch(choose) {
 		case 1:
 			mView = new RegistView();

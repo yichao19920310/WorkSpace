@@ -6,6 +6,7 @@ public class RegistView extends View {
 
 	@Override
 	public View showView() {
+		System.out.println("=====>зЂВс");
 		Register r = new Register();
 		r.regist();
 		mView = new MainView();

@@ -7,6 +7,7 @@ public class LoginView extends View {
 
 	@Override
 	public View showView() {
+		System.out.println("=====>µÇÂ¼");
 		Loginer l = new Loginer();
 		user = l.login();
 		if(user != null) {

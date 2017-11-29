@@ -18,7 +18,8 @@ public class UserMenuView extends View {
 		System.out.println("6.查看DVD热度排行");
 		System.out.println("7.借出DVD");
 		System.out.println("8.归还DVD");
-		int choose = it.getInt();
+		System.out.println("0.退出登录并返回主界面");
+		int choose = iT.getInt();
 		switch(choose) {
 		case 1:
 			mView = new UserInfoView();
@@ -30,14 +31,21 @@ public class UserMenuView extends View {
 			mView = new SetPwdView();
 			break;
 		case 4:
+			mView = new SetPwdTipView();
 			break;
 		case 5:
+			mView = new ShowAllOnlineDvdView();
 			break;
 		case 6:
+			mView = new ShowDvdRankView();
 			break;
 		case 7:
+			mView = new LengDvdView();
 			break;
 		case 8:
+			break;
+		case 0:
+			mView = new MainView();
 			break;
 		default:
 			break;

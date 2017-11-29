@@ -6,7 +6,7 @@ public class SetNameView extends View {
 	public View showView() {
 		System.out.println("=====>设置昵称");
 		System.out.println("请输入新昵称");
-		String name = it.getString();
+		String name = iT.getString();
 		user.setUserName(name);
 		System.out.println("设置成功!");
 		mView = new UserMenuView();

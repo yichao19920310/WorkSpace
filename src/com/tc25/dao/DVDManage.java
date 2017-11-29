@@ -19,20 +19,37 @@ import com.tc25.bean.DVD;
  */
 public interface DVDManage {
 
-	public DVD addDvd();
+	public DVD addDvd(String name);
 	
-	public DVD subDvdById();
+	public DVD subDvdById(int id);
 	
-	public DVD subDvdByName();
-	
-	public DVD changeDvdName();
-	
+	public DVD subDvdByName(String name);
+		
 	public void showAllDvd();
 	
-	public DVD showDvdById();
 	
 	public void showAllOnlineDvd();
 	
-	public void showDvdByName();
+	public void showDvdByName(String name);
+
+	/**  
+	 * @Title: showDvdById  
+	 * @Description: TODO(这里用一句话描述这个方法的作用)  
+	 * @param @param id
+	 * @param @return    参数  
+	 * @return DVD    返回类型  
+	 * @throws  
+	 */  
+	public DVD showDvdById(int id);
+
+	/**  
+	 * @Title: changeDvdName  
+	 * @Description: TODO(这里用一句话描述这个方法的作用)  
+	 * @param @param id
+	 * @param @return    参数  
+	 * @return DVD    返回类型  
+	 * @throws  
+	 */  
+	public DVD changeDvdName(int id);
 	
 }

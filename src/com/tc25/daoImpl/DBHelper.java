@@ -1,6 +1,7 @@
 package com.tc25.daoImpl;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -38,19 +39,23 @@ public static void main(String[] args) {
 		ArrayList<User> list = new ArrayList<>();
 		try {
 			Connection conn = db.getConnection();
-			PreparedStatement pStment = conn.prepareStatement("数据库指令,不用加分号");
-			//ResultSet rSet = pStment.executeQuery();
-			pStment.executeUpdate();//--增删改.
-			/*while (rSet.next()) {
-				User u = new User();
+			PreparedStatement pStment = conn.prepareStatement("select dvddate from dvdlist where dvdid = 1");
+			ResultSet rSet = pStment.executeQuery();
+			//pStment.executeUpdate();//--增删改.
+			Date d = null;
+			while (rSet.next()) {
+				
+				d = rSet.getDate("DVDDATE");
+				/*User u = new User();
 				u.setUserAcc(rSet.getString("USERACC"));
 				u.setUserName(rSet.getString("USERNAME"));
 				u.setUserId(rSet.getInt("USERID"));
 				u.setUserPwd(rSet.getString("USERPWD"));
 				u.setUserPwdTip(rSet.getString("USERPWDTIP"));
 				//u.setUserStatus(rSet.getInt("USERSTATUS"));
-				list.add(u);
-			}*/	
+				list.add(u);*/
+				System.out.println(d.toString());
+			}
 		} catch (SQLException e) {		
 			e.printStackTrace();
 		}
@@ -58,5 +63,7 @@ public static void main(String[] args) {
 		/*for (User user : list) {
 			System.out.println(user);
 		}*/
+		
+	
 	}
 }
